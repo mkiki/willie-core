@@ -1,0 +1,84 @@
+/**
+ * CSS for Help page
+ *
+ * (C) Alexandre Morin 2015 - 2016
+ */
+
+.canvas {
+  display: flex;
+  flex-direction: row;
+}
+
+.help-section { 
+  float: right;
+  margin-right: 240px;
+  margin-top: 16px;
+  display: block;
+}
+
+.logo {
+  display: flex;
+  flex: 0 0 auto;
+}
+
+.logo img {
+  width: 180px;
+  height: 180px;
+  margin: 16px;
+}
+
+.about-title {
+  font-size: 48px;
+  font-weight: 100;
+  margin-bottom: 4px;
+  flex: 0;
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.module-stats {
+  /*border: 1px solid #1ee;*/
+  /*padding: 4px;*/
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+}
+.stats-module-title {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #eee;
+}
+.stats-attr {
+}
+.stats-buttons {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: row;
+}
+.stats-button {
+  max-width: 160px;
+  width: 160px;
+  margin-right: 8px;
+  height: 45px;
+}
+
+.details-stats {
+  display: flex;
+  flex: 1;
+  /*background-color: #eee;*/
+  max-height: 600px;
+  margin-top: 120px;
+}
+.stats-shortcuts {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+}
+.shortcut {
+  margin-bottom: 2px;
+}

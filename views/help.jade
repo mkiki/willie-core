@@ -1,0 +1,60 @@
+//- 
+
+html
+  head
+    title!="Help"
+    link(rel="shortcut icon" type="image/png" href="/core/images/favicon.png?v=2")
+    link(href='https://fonts.googleapis.com/css?family=Raleway', rel='stylesheet', type='text/css')
+
+    link(rel="stylesheet", href="/core/css/bootstrap.min.css")
+    link(rel="stylesheet", href="/core/css/bootstrap-theme.min.css")
+    link(rel="stylesheet", href="/core/css/tipsy.css")
+    link(rel="stylesheet", href="/core/css/core.css")
+    link(rel="stylesheet", href="/core/css/help.css")
+
+    script(src="/core/js/lib/jquery-2.1.1.min.js")
+    script(src="/core/js/lib/bootstrap.min.js")
+    script(src="/core/js/lib/moment.min.js")
+    script(src="/core/js/lib/jquery.tipsy.js")
+    
+    script(src="/core/js/utils-cli.js")
+    script(src="/core/js/help-cli.js")
+
+    script(src="/core/js/lib/highcharts/highcharts.js")
+    script(src="/core/js/lib/highcharts/modules/heatmap.js")
+
+  body
+    div(id="debug", class="debug")
+    div(id="env",   class="env")
+      != env
+
+    div(class="inner")
+
+      div(id="menu", class="menu")
+        div(id="menu-hamburger")
+        div(id="menu-commands")
+
+      div(class="canvas")
+
+        div(class="logo")
+          a(href="/")
+            img(src="/core/images/logo-180.jpg")
+
+        div(id="generalStats", class="stats")
+          div(class="about-title")
+            | Loulex Photos&nbsp;
+            != version
+          div(id="databaseId") Database ID: !{userContext.databaseId}
+          <a href="http://www.freepik.com/free-photos-vectors/tree">Tree vector designed by Freepik</a>
+
+          div(id="stats-core", class="module-stats")
+          div(id="stats-photos", class="module-stats")
+          div(id="stats-treeregister", class="module-stats")
+          div(id="stats-miouzik", class="module-stats")
+
+        div(id="details-stats", class="details-stats")
+
+    script.
+      document.userContext = !{JSON.stringify(userContext).replace(/<\//g, "<\\/")}
+    script.
+      document.sideMenu = !{JSON.stringify(sideMenu).replace(/<\//g, "<\\/")}

@@ -1,0 +1,27 @@
+//- 
+
+//- Display an error
+
+
+html
+  head
+    title!= title
+    link(rel="shortcut icon" type="image/png" href="/core/images/favicon.png?v=2")
+    link(href='https://fonts.googleapis.com/css?family=Raleway', rel='stylesheet', type='text/css')
+
+    link(rel="stylesheet", href="/core/css/bootstrap.min.css")
+    link(rel="stylesheet", href="/core/css/bootstrap-theme.min.css")
+    link(rel="stylesheet", href="/core/css/core.css")
+
+    script(src="/core/js/lib/jquery-2.1.1.min.js")
+    script(src="/core/js/lib/bootstrap.min.js")
+
+  body
+    div(id="debug", class="debug")
+    div(id="env",   class="env")
+      != env
+
+    h1!= err
+
+    script.
+      document.userContext = !{JSON.stringify(userContext).replace(/<\//g, "<\\/")}
