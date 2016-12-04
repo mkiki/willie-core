@@ -4,33 +4,6 @@
  * (C) Alexandre Morin 2015 - 2016
  */
 
-/** ================================================================================
-  * Home
-  * ================================================================================ */
-
-.home-header {
-  height: 60px;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  display: block;
-  line-height: 60px;
-  font-size: 40px;
-}
-
-.home-logo {
-  float: left;
-  margin: 4px;
-}
-.home-logo img {
-  width: 52px;
-  height: 52px;
-}
-
-.home-title {
-  padding-left: 80px;
-}
-
 .home-body {
   background-color: #ccc;
   width: 100%;

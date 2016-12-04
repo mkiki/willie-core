@@ -2,7 +2,7 @@
 
 html
   head
-    title!="Help"
+    title!="Willie - Help"
     link(rel="shortcut icon" type="image/png" href="/core/images/favicon.png?v=2")
     link(href='https://fonts.googleapis.com/css?family=Raleway', rel='stylesheet', type='text/css')
 
@@ -17,11 +17,11 @@ html
     script(src="/core/js/lib/moment.min.js")
     script(src="/core/js/lib/jquery.tipsy.js")
     
-    script(src="/core/js/utils-cli.js")
-    script(src="/core/js/help-cli.js")
-
     script(src="/core/js/lib/highcharts/highcharts.js")
     script(src="/core/js/lib/highcharts/modules/heatmap.js")
+
+    script(src="/core/js/utils-cli.js")
+    script(src="/core/js/help-cli.js")
 
   body
     div(id="debug", class="debug")
@@ -42,15 +42,15 @@ html
 
         div(id="generalStats", class="stats")
           div(class="about-title")
-            | Loulex Photos&nbsp;
+            | Willie&nbsp;
             != version
           div(id="databaseId") Database ID: !{userContext.databaseId}
           <a href="http://www.freepik.com/free-photos-vectors/tree">Tree vector designed by Freepik</a>
 
-          div(id="stats-core", class="module-stats")
-          div(id="stats-photos", class="module-stats")
-          div(id="stats-treeregister", class="module-stats")
-          div(id="stats-miouzik", class="module-stats")
+          div(id="stats-core",          class="module-stats")
+          div(id="stats-photos",        class="module-stats")
+          div(id="stats-treeregister",  class="module-stats")
+          div(id="stats-miouzik",       class="module-stats")
 
         div(id="details-stats", class="details-stats")
 

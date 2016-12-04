@@ -1,18 +1,16 @@
 /**
- * Photo Organiser - Authorization unit tests
- *
- * (C) Alexandre Morin 2015 - 2016
+ * willie-core - Authorization unit tests
  */
+// (C) Alexandre Morin 2015 - 2016
 
-var assert = require('assert');
+const assert = require('assert');
+const helpers = require('./helpers.js');
+const Auth = require('../lib/auth.js');
+const database = require('../lib/database.js');
 
 describe('Auth', function() {
-  
-  const Auth = require('../lib/auth.js');
-  const assert = require('assert');
-  const helpers = require('./helpers.js');
-  const database = require('../lib/database.js');
-  
+
+  helpers.beforeAfter();
 
   /** ================================================================================
     * Test password authentication

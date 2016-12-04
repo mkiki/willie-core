@@ -1,21 +1,19 @@
 /**
- * Core module - Module tests
- *
- * (C) Alexandre Morin 2015 - 2016
+ * willie-core - Core module unit tests
  */
+// (C) Alexandre Morin 2015 - 2016
 
-var assert = require('assert');
+const assert = require('assert');
+const fs = require('fs');  
+const Module = require('../lib/module.js');
+const WebServer = require('../lib/webServer.js');
+const Exception = require('wg-log').Exception;
+const http = require('http');
+const helpers = require('./helpers.js');
 
 describe('Module', function() {
 
-  const fs = require('fs');  
-  const Module = require('../lib/module.js');
-  const WebServer = require('../lib/webServer.js');
-  const Exception = require('wg-log').Exception;
-  const http = require('http');
-  const helpers = require('./helpers.js');
-
-  const CNX = helpers.cnx; //"postgres://willie:willie@localhost/willietest";
+  helpers.beforeAfter();
 
   // Execute a block of code in between module start and shutdown
   // Call callback after module shutdown
@@ -73,7 +71,7 @@ describe('Module', function() {
         return module.loadTextFile('sql/update.sql', function(err, contents) {
           assert (err === null || err === undefined, "Checking for error");
           var row = contents.substr(84, 32);
-          assert (row === 'Core - Update database structure', "Checking a piece of content near the beginning");
+          assert (row === 'willie-core - Update database st', "Checking a piece of content near the beginning");
           return callback();
         });
       }, done);
@@ -88,7 +86,7 @@ describe('Module', function() {
   // Call callback after module shutdown
   function _withModuleWebService(block, callback) {
     return _withModule(function(module, callback) {
-      var config = { cnx:CNX, web:{port:3000} };
+      var config = { cnx:helpers.cnx, web:{port:3000} };
       var webServer = new WebServer(config);
       return webServer.start(function(err) {
         if (err) return callback(new Exception(undefined, "Checking for error (starting web server)", err));
@@ -127,7 +125,5 @@ describe('Module', function() {
       }, done);
     });
   });
-
-
 
 });

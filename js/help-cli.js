@@ -1,8 +1,7 @@
 /**
- * Help page (client-side code)
+ * willie-core - Help page (client-side code)
  */
 // (C) Alexandre Morin 2015 - 2016
-
 
 
 /**

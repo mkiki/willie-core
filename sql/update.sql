@@ -1,8 +1,5 @@
 --------------------------------------------------------------------------------
--- Core - Update database structure
---
--- Run with database user
--- Example: psql -U willie -d willie  < sql/update.sql
+-- willie-core - Update database structure
 --------------------------------------------------------------------------------
 
 DO $$
@@ -16,7 +13,6 @@ BEGIN
     THEN
       ver = '0.0';
   END;
-
 
 
   LOOP
@@ -44,20 +40,20 @@ BEGIN
       ver = '1.0';
 
   --------------------------------------------------------------------------------
-  -- Version 2, create users
+  -- Version 2, users
   --------------------------------------------------------------------------------
     ELSIF ver = '1.0' THEN
     CREATE TABLE core_users (
-        id              uuid primary key default uuid_generate_v4(),
-        login           varchar(64),                        -- unique login
-        hashedPassword  varchar(256),                     -- hashed password
-        salt      varchar(256),           -- Store salt and hased password: hashedPassword = sha256(salt + password)
-        name            varchar(256),                       -- user-friendly name
-        canLogin        boolean default false,              -- this user can log-in
-        isAdmin     boolean NOT NULL DEFAULT false,
-        avatar      varchar(256),
-        email       varchar(256),
-        builtin     boolean default false
+        id              uuid primary key default uuid_generate_v4(),           -- record identifier
+        login           varchar(64),                                           -- unique login
+        hashedPassword  varchar(256),                                          -- hashed password
+        salt            varchar(256),                                          -- Store salt and hased password: hashedPassword = sha256(salt + password)
+        name            varchar(256),                                          -- user-friendly name
+        canLogin        boolean default false,                                 -- this user can log-in
+        isAdmin         boolean NOT NULL DEFAULT false,                        -- this user is an administrator
+        avatar          varchar(256),                                          -- URL of an avatar image
+        email           varchar(256),                                          -- user email address
+        builtin         boolean default false                                  -- this is a builtin user (ex: nobody)
     );
     ver = '1.1';
   ELSIF ver = '1.1' THEN
@@ -69,14 +65,14 @@ BEGIN
   
 
   --------------------------------------------------------------------------------
-  -- Version 3, create sessions
+  -- Version 3, sessions
   --------------------------------------------------------------------------------
     ELSIF ver = '2.0' THEN
     CREATE TABLE core_sessions (
-        id              uuid primary key default uuid_generate_v4(),
-        login           varchar(64) REFERENCES core_users(login),       -- user login
-        accessToken     varchar(1024),                                  -- valid access token
-        validUntil      timestamp with time zone                        -- date after which the access token is not valid anymore
+        id              uuid primary key default uuid_generate_v4(),           -- record identifier
+        login           varchar(64) REFERENCES core_users(login),              -- user login
+        accessToken     varchar(1024),                                         -- valid access token
+        validUntil      timestamp with time zone                               -- date after which the access token is not valid anymore
     );
     ver = '2.1';
     ELSIF ver = '2.1' THEN
@@ -88,18 +84,19 @@ BEGIN
 
 
   --------------------------------------------------------------------------------
-  -- Version 4, create jobs
+  -- Version 4, jobs
+  -- A job is a long running process such as a background scan of files...
   --------------------------------------------------------------------------------
     ELSIF ver = '3.0' THEN
     CREATE TABLE core_jobs (
-        id              uuid primary key default uuid_generate_v4(),
-        name            varchar(256),
-        type            varchar(64),
-        status          varchar(64),
-        context         jsonb,
-        progress        jsonb,
-        started         timestamp with time zone,
-        updated         timestamp with time zone
+        id              uuid primary key default uuid_generate_v4(),           -- record identifier
+        name            varchar(256),                                          -- job unique name
+        type            varchar(64),                                           -- job type. Example "scan"
+        status          varchar(64),                                           -- job status (job-specific human readable label)
+        context         jsonb,                                                 -- job context (i.e. persisted job-specific variables and attributes)
+        progress        jsonb,                                                 -- job progress (i.e. set of job-specific attributes indicating progress)
+        started         timestamp with time zone,                              -- date and time at which the job started
+        updated         timestamp with time zone                               -- date and time at which the job was last updated
     );
     ver = '3.1';
     ELSIF ver = '3.1' THEN

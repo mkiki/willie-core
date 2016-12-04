@@ -1,16 +1,15 @@
-  /**
-   * Willie - Database unit tests
-   *
-   * (C) Alexandre Morin 2015 - 2016
-   */
+/**
+ * willie-core - Database unit tests
+ */
+// (C) Alexandre Morin 2015 - 2016
+
 const assert = require('assert');
 const helpers = require('./helpers.js');
 const database = require('../lib/database.js');
 
-
-
 describe('Database', function() {
 
+  helpers.beforeAfter();
 
   /** ================================================================================
     * Users

@@ -1,8 +1,8 @@
 /**
- * Photo Organiser
- *
- * (C) Alexandre Morin 2015 - 2016
+ * willie-core - Client-side utilities
  */
+// (C) Alexandre Morin 2015 - 2016
+
 // Keyboard codes
 KEY_ESCAPE = 27;
 KEY_RETURN = 13;

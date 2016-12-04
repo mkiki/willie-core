@@ -4,11 +4,20 @@
 // (C) Alexandre Morin 2015 - 2016
   
 var Module = require('./lib/module.js');
-Module = new Module();
-Module.Database = require('./lib/database.js');
+var Database = require('./lib/database.js');
 
 /**
  * Module public interface
  */
+module.exports = {
+  Module: new Module(),
+  Database: Database,
 
-module.exports = Module;
+  // Test interface. Returns the object as a function so that there's no overhead if not using
+  Test: function() {
+    const helpers = require('./tests/helpers.js');
+    return helpers;
+  }
+
+};
+
