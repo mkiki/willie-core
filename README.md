@@ -6,6 +6,13 @@ This module provides core functionality
 * Notion of module, background commands and web services
 * Helpers for other modules
 
+## Installation
+
+	npm link wg-log
+	npm link wg-utils
+	npm link wg-database
+	npm install
+
 
 ## Database
 
