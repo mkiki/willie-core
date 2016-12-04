@@ -1,5 +1,5 @@
 --------------------------------------------------------------------------------
--- willie-core - Builtin data for the willie-core module
+-- willie-core - Builtin data
 --------------------------------------------------------------------------------
 
 -- Create or update the 'nobody' user who represents an anonymous, non logged user
